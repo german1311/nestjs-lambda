@@ -79,4 +79,4 @@ Nest is [MIT licensed](LICENSE).
 - [x] Local development
 - [x] Multiple endpoints for different entities
 - [x] SAM deploy multiple templates
-- [] Swagger documentation
+- [x] Swagger documentation
