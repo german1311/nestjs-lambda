@@ -17,6 +17,7 @@ async function bootstrapServer(): Promise<Server> {
     const nestApp = await NestFactory.create(
       GreetingsModule,
       new ExpressAdapter(expressApp),
+      // extend the logger here https://docs.nestjs.com/techniques/logger
     );
     nestApp.useGlobalPipes(new ValidationPipe());
     nestApp.use(eventContext());

@@ -3,6 +3,21 @@ Transform: 'AWS::Serverless-2016-10-31'
 Description: NestJS on AWS Lambda
 
 Resources:
+  MainAPIGateway:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name:
+        Fn::Sub: ${stage}-german-api-rest
+      StageName:
+        Ref: stage
+      DisableExecuteApiEndpoint: true      
+      Cors:
+        AllowMethods: '''OPTIONS,POST,GET,PUT,DELETE,PATCH'''
+        AllowHeaders: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+        AllowOrigin: '''*'''
+      EndpointConfiguration:
+        Type: REGIONAL
+
   MyGreetingsNestJSLambdaFunction:
     Type: AWS::Serverless::Function
     Properties:

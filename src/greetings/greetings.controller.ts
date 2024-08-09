@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Logger, Param, Post, Query } from '@nestjs/common';
 import { HelloService } from './hello/hello.service';
 import { GoodByeService } from './goodbye/goodbye.service';
 
@@ -11,6 +11,7 @@ export class GreetingsController {
 
   @Get(['', 'hello'])
   getHello(@Query('name') name: string): string {
+    Logger.log(`Name: ${name}`);
     return this.helloService.getHello(name);
   }
 
