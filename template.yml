@@ -3,24 +3,43 @@ Transform: 'AWS::Serverless-2016-10-31'
 Description: NestJS on AWS Lambda
 
 Resources:
-  MyNestJSLambdaFunction:
+  MyGreetingsNestJSLambdaFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: dist/serverless.handler
+      Handler: dist/greetings/serverless.handler
       Runtime: nodejs18.x
       CodeUri: ./
       MemorySize: 256
       Timeout: 20
       Events:
-        HelloWorld:
+        Greetings:
           Type: Api
           Properties:
-            Path: /{proxy+}
+            Path: /greetings/{proxy+}
             Method: ANY
         RootPath:
           Type: Api
           Properties:
-            Path: /
+            Path: /greetings
+            Method: ANY
+  MyProductsNestJSLambdaFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: dist/products/serverless.handler
+      Runtime: nodejs18.x
+      CodeUri: ./
+      MemorySize: 256
+      Timeout: 20
+      Events:
+        Products:
+          Type: Api
+          Properties:
+            Path: /products/{proxy+}
+            Method: ANY
+        RootPath:
+          Type: Api
+          Properties:
+            Path: /products
             Method: ANY
 
 Outputs:

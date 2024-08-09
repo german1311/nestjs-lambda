@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class GoodByeService {
-  getByeBye(): string {
-    return 'Bye bye!';
+  getByeBye(id:string): string {
+    return `Goodbye ${id}!`;
   }
 }

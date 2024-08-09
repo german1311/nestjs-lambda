@@ -71,3 +71,12 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+
+# Goals
+- [x] SAM CLI integration
+- [x] SAM Local integration
+- [x] Local development
+- [x] Multiple endpoints for different entities
+- [x] SAM deploy multiple templates
+- [] Swagger documentation
