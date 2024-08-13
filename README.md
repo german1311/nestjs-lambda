@@ -68,3 +68,5 @@ Nest is [MIT licensed](LICENSE).
 - [] AWS CloudWatch support
 - [] AWS CloudWatch Logs support( @aws-lambda-powertools/logger)
 - [] Custom lambda
+- [] Minification
+- [] Caching

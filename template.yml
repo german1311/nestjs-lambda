@@ -1,22 +1,37 @@
-AWSTemplateFormatVersion: '2010-09-09'
-Transform: 'AWS::Serverless-2016-10-31'
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: "AWS::Serverless-2016-10-31"
 Description: NestJS on AWS Lambda
 
+Globals:
+  Function:
+    Timeout: 25
+    Runtime: nodejs18.x
+    Tracing: Active
+    MemorySize: 512
+    Architectures:
+      - x86_64
+  Api:
+    TracingEnabled: true
+
+Parameters:
+  stage:
+    Type: String
+    Default: sandbox
+    Description: (Required) the environment name of the deployment (e.g. sb, dev, ,qa, uat, prod), defaults to dev.
+    AllowedValues:
+      - sandbox
+      - dev
+
 Resources:
-  MainAPIGateway:
+  GermanAPIGateway:
     Type: AWS::Serverless::Api
     Properties:
-      Name:
-        Fn::Sub: ${stage}-german-api-rest
-      StageName:
-        Ref: stage
-      DisableExecuteApiEndpoint: true      
+      Name: !Sub "${stage}-german-api-rest"
+      StageName: !Ref stage
       Cors:
-        AllowMethods: '''OPTIONS,POST,GET,PUT,DELETE,PATCH'''
-        AllowHeaders: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
-        AllowOrigin: '''*'''
-      EndpointConfiguration:
-        Type: REGIONAL
+        AllowMethods: "'OPTIONS,POST,GET,PUT,DELETE,PATCH'"
+        AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+        AllowOrigin: "'*'"
 
   MyGreetingsNestJSLambdaFunction:
     Type: AWS::Serverless::Function
@@ -30,11 +45,13 @@ Resources:
         Greetings:
           Type: Api
           Properties:
+            RestApiId: !Ref GermanAPIGateway
             Path: /greetings/{proxy+}
             Method: ANY
         RootPath:
           Type: Api
           Properties:
+            RestApiId: !Ref GermanAPIGateway
             Path: /greetings
             Method: ANY
   MyProductsNestJSLambdaFunction:
@@ -49,15 +66,17 @@ Resources:
         Products:
           Type: Api
           Properties:
+            RestApiId: !Ref GermanAPIGateway
             Path: /products/{proxy+}
             Method: ANY
         RootPath:
           Type: Api
           Properties:
+            RestApiId: !Ref GermanAPIGateway
             Path: /products
             Method: ANY
 
 Outputs:
   HelloWorldApi:
-    Description: 'API Gateway endpoint URL for the HelloWorld function'
-    Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/'
+    Description: "API Gateway endpoint URL for the nestJs demo app"
+    Value: !Sub "https://${GermanAPIGateway}.execute-api.${AWS::Region}.amazonaws.com/stage/"
