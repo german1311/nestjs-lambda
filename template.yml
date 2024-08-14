@@ -36,7 +36,7 @@ Resources:
   MyGreetingsNestJSLambdaFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: dist/greetings/serverless.handler
+      Handler: dist/modules/greetings/serverless.handler
       Runtime: nodejs18.x
       CodeUri: ./
       MemorySize: 256
@@ -57,7 +57,7 @@ Resources:
   MyProductsNestJSLambdaFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: dist/products/serverless.handler
+      Handler: dist/modules/products/serverless.handler
       Runtime: nodejs18.x
       CodeUri: ./
       MemorySize: 256

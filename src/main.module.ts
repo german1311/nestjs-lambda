@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { GreetingsModule } from './greetings/greetings.module';
-import { ProductsModule } from './products/products.module';
+import { GreetingsModule } from './modules/greetings/greetings.module';
+import { ProductsModule } from './modules/products/products.module';
 
 @Module({
   imports: [GreetingsModule, ProductsModule],

@@ -51,9 +51,6 @@ $ yarn run test:cov
 $ yarn run build && sam build && sam deploy
 ```
 
-## License
-
-Nest is [MIT licensed](LICENSE).
 
 
 # Goals
@@ -66,7 +63,6 @@ Nest is [MIT licensed](LICENSE).
 - [] Database support
 - [] AWS X-Ray support
 - [] AWS CloudWatch support
-- [] AWS CloudWatch Logs support( @aws-lambda-powertools/logger)
-- [] Custom lambda
+- [x] Powertools Logs support( @aws-lambda-powertools/logger)
+- [] Custom lambda, the old best implementation sample
 - [] Minification
-- [] Caching
