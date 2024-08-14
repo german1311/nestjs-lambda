@@ -4,6 +4,7 @@ import { GoodByeService } from './goodbye/goodbye.service';
 
 @Controller('greetings')
 export class GreetingsController {
+  private readonly logger = new Logger(GreetingsController.name);
   constructor(
     private readonly helloService: HelloService,
     private readonly goodbyeService: GoodByeService,
@@ -11,12 +12,13 @@ export class GreetingsController {
 
   @Get(['', 'hello'])
   getHello(@Query('name') name: string): string {
-    Logger.log(`Name: ${name}`);
+    this.logger.log(`Name: ${name}`);
     return this.helloService.getHello(name);
   }
 
   @Get('goodbye/:id')
   getGoodBye(@Param('id') id: string): string {
+    Logger.log(`ID: ${id}`);
     return this.goodbyeService.getByeBye(id);
   }
 
